@@ -1,0 +1,22 @@
+{% extends "finbuzz/base.html"  %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/home.css' %}" rel="stylesheet" />
+    <div class="market-news">
+        <h2>Market News</h2>
+        {% for news in market_news %}
+        <div class="news-item">
+            <h3>{{ news.title }}</h3>
+            {% if news.image_url %}
+            <div class="news-image">
+                <img src="{{ news.image_url }}" alt="News Image">
+            </div>
+            {% endif %}
+            <p>{{ news.description }}</p>
+            <a href="{{ news.url }}" target="_blank">Read more</a>
+            <p><small>Published at: {{ news.published_at }}</small></p>
+            <p><small>Source: {{ news.source }}</small></p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
